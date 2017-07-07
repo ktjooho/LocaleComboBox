@@ -2,7 +2,10 @@ LocaleComboBox Add-on for Vaadin 8
 =============
 A Server-Side combo-box component which shows png-image based flag icon with country name. 
 
-![juho](http://i.imgur.com/CgAuHlE.png)
+![Locale : Canada](https://github.com/ktjooho/LocaleComboBox/blob/master/screenshot/screenshot_0.png)
+![Locale : Korea](https://github.com/ktjooho/LocaleComboBox/blob/master/screenshot/screenshot_1.png)
+![Locale : USA](https://github.com/ktjooho/LocaleComboBox/blob/master/screenshot/screenshot_3.png)
+
 
 ## Notice
 <p> This component is used with <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">Locale</a> (pure Java class). </p>
@@ -34,7 +37,10 @@ comboBox.setVisibleLocales(Locale.CANADA, new Locale("en","GR"));
 ```
 
 ## Styling
-<p> There are two icon styles ; flat, shiny.</p>
+### There are two icon styles ; flat(![Locale : USA](https://github.com/ktjooho/LocaleComboBox/blob/master/screenshot/flat_32_kr.png)), shiny(![shiny : x](https://github.com/ktjooho/LocaleComboBox/blob/master/screenshot/shiny_32_kr.png)).
+
+
+
 <p> Default style is shiny. </p>
 
 ``` java
