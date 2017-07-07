@@ -9,14 +9,20 @@ A Server-Side combo-box component which shows png-image based flag icon with cou
 <p> Please make sure that your Locale object uses <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes">ISO 3166 2-letter country code</a>. </p>
 <p> It displays locales that are mapped with default locale.</p>
 
-## Run Demo
+## Building and running demo
 ```bash
-git clone https://github.com/ktjooho/LocaleComboBox
+git clone https://github.com/ktjooho/LocaleComboBox.git
 mvn clean install
 cd locale-combobox
 mvn jetty:run
 ```
 To see the demo, navigate to http://localhost:8000/
+
+## Release notes
+
+### Version 1.0-SNAPSHOT
+- only support Vaadin-8
+ 
 
 ## Usage
 
