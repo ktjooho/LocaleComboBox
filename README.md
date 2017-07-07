@@ -16,7 +16,7 @@ A Server-Side combo-box component which shows png-image based flag icon with cou
 ```bash
 git clone https://github.com/ktjooho/LocaleComboBox.git
 mvn clean install
-cd locale-combobox
+cd LocaleComboBox
 mvn jetty:run
 ```
 To see the demo, navigate to http://localhost:8000/
