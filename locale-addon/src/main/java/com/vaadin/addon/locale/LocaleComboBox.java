@@ -29,18 +29,15 @@ public class LocaleComboBox extends ComboBox<Locale> {
     }
     public void setVisibleLocales(Collection<Locale> locales) {
         final int ISO_CODE_LENGTH = 2;
-        Locale defaultLocale = Locale.getDefault();
 
         LinkedList<Locale> availableLocaleList = new LinkedList<>(
                 locales.stream()
-                .filter(l -> l.getCountry().length() == ISO_CODE_LENGTH || l.equals(defaultLocale))
+                .filter(l -> l.getCountry().length() == ISO_CODE_LENGTH )
                 .distinct()
                 .sorted(Comparator.comparing(Locale::getDisplayCountry,String::compareTo))
                 .collect(Collectors.toList())
         );
-        availableLocaleList.addFirst(defaultLocale);
         setItems(availableLocaleList);
-        setSelectedItem(defaultLocale);
     }
 
     public LocaleComboBox(String caption) {

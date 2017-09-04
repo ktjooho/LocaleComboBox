@@ -35,7 +35,7 @@ public class DemoUI extends UI
         flagComboBox.setIconStyle(LocaleComboBox.IconStyle.FLAT);
         flagComboBox.setVisibleLocales(Locale.CANADA, Locale.FRANCE, Locale.CHINA);
         Locale[] availableLocales = Locale.getAvailableLocales();
-        flagComboBox.setVisibleLocales(availableLocales);
+        //flagComboBox.setVisibleLocales(availableLocales);
 
         // Show it in the middle of the screen
         final VerticalLayout layout = new VerticalLayout();
