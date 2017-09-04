@@ -25,13 +25,15 @@ To see the demo, navigate to http://localhost:8000/
 
 ### Version 1.0-SNAPSHOT
 - only support Vaadin-8
+### Version 1.2.0
+- change to support only default locale(set by jvm) map.
  
 
 ## Usage
 
 ``` java
 final LocaleComboBox comboBox = new LocaleComboBox("Locale ComboBox");
-comboBox.setVisibleLocales(Locale.KOREA, Locale.getAvailableLocales());
+comboBox.setVisibleLocales(Locale.getAvailableLocales());
 comboBox.setVisibleLocales(Locale.CHINA, Locale.FRANCE, Locale.CANADA, Locale.JAPAN);
 comboBox.setVisibleLocales(Locale.CANADA, new Locale("en","GR"));
 ```
