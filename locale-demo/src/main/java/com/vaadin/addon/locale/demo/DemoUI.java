@@ -30,23 +30,26 @@ public class DemoUI extends UI
     @Override
     protected void init(VaadinRequest request) {
 
-        // Initialize our new UI component
-        Locale.setDefault(Locale.CANADA);
+      //  Locale.setDefault(Locale.CANADA);
         final String status = "Current Locale : ";
 
-        final LocaleComboBox flagComboBox = new LocaleComboBox(status + Locale.getDefault().getDisplayCountry(), Arrays.asList(Locale.CANADA,Locale.KOREA));
-        Arrays.stream(Locale.getAvailableLocales()).forEach(locale -> flagComboBox.setVisibleLocales(locale, Locale.getAvailableLocales()));
-        flagComboBox.setIconStyle(LocaleComboBox.IconStyle.SHINY);
+        final LocaleComboBox flagComboBox = new LocaleComboBox(status + Locale.getDefault().getDisplayCountry());
 
+        //flagComboBox.setVisibleLocales(Locale.getAvailableLocales());
+        flagComboBox.setIconStyle(LocaleComboBox.IconStyle.FLAT);
+        flagComboBox.setVisibleLocales(Locale.CANADA, Locale.FRANCE, Locale.CHINA);
+        Locale[] availableLocales = Locale.getAvailableLocales();
+        flagComboBox.setVisibleLocales(availableLocales);
+
+        /*
         flagComboBox.addValueChangeListener(item -> {
             final Locale locale = item.getValue();
-            Locale.setDefault(locale);
             flagComboBox.setCaption(status + locale.getDisplayCountry());
-            flagComboBox.onCurrentLocaleChanged();
+
         });
+        */
 
-        flagComboBox.setVisibleLocales(Locale.KOREA, new Locale("en","GR"));
-
+        //flagComboBox.setItems(Locale.getAvailableLocales());
         // Show it in the middle of the screen
         final VerticalLayout layout = new VerticalLayout();
         layout.setStyleName("demoContentLayout");

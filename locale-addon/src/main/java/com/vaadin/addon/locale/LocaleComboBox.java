@@ -4,13 +4,13 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.shared.ApplicationConstants;
 import com.vaadin.ui.ComboBox;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class LocaleComboBox extends ComboBox<Locale> {
 
-    private Map<Locale, Collection<Locale>> localeMap = new HashMap<>();
-    private IconStyle iconStyle = IconStyle.SHINY;
+   private IconStyle iconStyle = IconStyle.SHINY;
 
     public IconStyle getIconStyle() {
         return iconStyle;
@@ -20,40 +20,27 @@ public class LocaleComboBox extends ComboBox<Locale> {
         this.iconStyle = iconStyle;
         setIcons();
     }
-
     private void setIcons() {
         setItemIconGenerator(locale -> new FlagIcon(locale, IconSize.SIZE_24_24, iconStyle));
     }
 
-    public void onCurrentLocaleChanged() {
-        setItems(localeMap.get(Locale.getDefault()).stream());
+    public void setVisibleLocales(Locale... locales) {
+        setVisibleLocales(Arrays.asList(locales));
     }
-
-    public void setVisibleLocales(Locale sourceLocale, Locale ...visibleLocales) {
-        setVisibleLocales(sourceLocale, Arrays.asList(visibleLocales));
-    }
-
-    public void setVisibleLocales(Locale sourceLocale, Collection<Locale> visibleLocales) {
+    public void setVisibleLocales(Collection<Locale> locales) {
         final int ISO_CODE_LENGTH = 2;
+        Locale defaultLocale = Locale.getDefault();
 
-        if(localeMap.get(sourceLocale) != null) {
-            localeMap.remove(sourceLocale);
-        }
-
-        List<Locale> availableLocaleList = visibleLocales.stream()
-                .filter(l -> l.getCountry().length() == ISO_CODE_LENGTH)
+        LinkedList<Locale> availableLocaleList = new LinkedList<>(
+                locales.stream()
+                .filter(l -> l.getCountry().length() == ISO_CODE_LENGTH || l.equals(defaultLocale))
                 .distinct()
-                .collect(Collectors.toList());
-
-        if( availableLocaleList.stream().noneMatch(locale -> locale == sourceLocale)) {
-            availableLocaleList.add(sourceLocale);
-        }
-
-        localeMap.put(sourceLocale, availableLocaleList);
-
-        if(sourceLocale == Locale.getDefault()) {
-            onCurrentLocaleChanged();
-        }
+                .sorted(Comparator.comparing(Locale::getDisplayCountry,String::compareTo))
+                .collect(Collectors.toList())
+        );
+        availableLocaleList.addFirst(defaultLocale);
+        setItems(availableLocaleList);
+        setSelectedItem(defaultLocale);
     }
 
     public LocaleComboBox(String caption) {
@@ -77,7 +64,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
     private void init(Collection<Locale> locales) {
         setIcons();
         setItemCaptionGenerator(Locale::getDisplayCountry);
-        setVisibleLocales(Locale.getDefault(), locales);
+        setVisibleLocales(locales);
     }
     private static final String ICON_PATH = ApplicationConstants.VAADIN_PROTOCOL_PREFIX + "addons/locale/flags-iso/";
 
@@ -118,5 +105,4 @@ public class LocaleComboBox extends ComboBox<Locale> {
             this.value = value;
         }
     }
-
 }
